@@ -74,26 +74,61 @@ const students = [
 ]
 
 /*h1 Section and aside functions*/
-const h1 = (title, style) =>{
-    return `<h1 class = "${style}">${title}</h1>`
+ //const h1 = (title, style) =>{
+    //return `<h1 class = "${style}">${title}</h1>`
+// }
+// const section = (title, style) =>{
+//     return `<section class = "boredered dashed ${style}">${title}</section>`
+// }
+// const aside = (title, style) =>{
+//     return `<aside class = "${style}">${title}</aside>`
+// }
+
+// const student = (name, className, info, colorClass) => `
+//     <div id="student"> 
+//         ${h1(name, `xx-large ${colorClass}`)}
+//         ${section(className, "section--padded")}
+//         ${aside(info, "pushRight")}
+//     </div>
+// `
+
+// const container = document.querySelector("#container")
+// // container.innerHTML = student("Marcus Fulbright", "Algebra", "Not a bright student")
+
+// /*Iterate through the students and apply styles if passing and or failing.*/
+// for (person of students) {
+//     console.log(person)
+//     let studentComponent = ''
+//     if (person.score >= 60) {
+//         studentComponent = student(person.name, person.class, person.info, "passing")
+//     } else {
+//         studentComponent = student(person.name, person.class, person.info, "failing")
+//     }
+//     console.log(students)
+//     container.innerHTML += studentComponent
+// }
+
+/*==============================using rest operators==============================================*/
+/*h1 Section and aside functions*/
+const h1 = (...props) =>{
+    return `<h1 class = "${props[1]}">${props[0]}</h1>`
 }
-const section = (title, style) =>{
-    return `<section class = "boredered dashed ${style}">${title}</section>`
+const section = (...props) =>{
+    return `<section class = "boredered dashed ${props[1]}">${props[0]}</section>`
 }
-const aside = (title, style) =>{
-    return `<aside class = "${style}">${title}</aside>`
+const aside = (...props) =>{
+    return `<aside class = "${props[1]}">${props[0]}</aside>`
 }
 
 const student = (name, className, info, colorClass) => `
     <div id="student"> 
         ${h1(name, `xx-large ${colorClass}`)}
-        ${section(className, "section--padded")}
-        ${aside(info, "pushRight")}
+        ${section(className, 'section-padded')}
+        ${aside(info, 'pushRight')}
     </div>
 `
 
 const container = document.querySelector("#container")
-// container.innerHTML = student("Marcus Fulbright", "Algebra", "Not a bright student")
 
 /*Iterate through the students and apply styles if passing and or failing.*/
 for (person of students) {
@@ -107,3 +142,10 @@ for (person of students) {
     console.log(students)
     container.innerHTML += studentComponent
 }
+
+/*=======================Generic function pratice===========================*/
+const element = (elName, text, classes ) =>{
+    return `<${elName} class = '${classes}'>${text}</${elName}>`
+}
+
+const h1 = element("h1", "Generic Component Maker", "xx-large orange");
